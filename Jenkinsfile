@@ -14,6 +14,8 @@
   // And we could have N levels of work because I could Schedule other Schedulers that then trigger Runs and then you have to ask is there really a differnece between any layer? No. Not beyond `node` and `workspace` allocation 
 
 // The code will require approval of several Jenkins classes in the Script Security mode
+  // or with caution disable sandboxing on the pipeline... useful especially with jenkinsfile-runner! 
+
 def branches = [:]
 def names = nodeNames()
 println(names)
@@ -45,8 +47,9 @@ parallel branches
 @NonCPS
 def nodeNames() {
   // FYI instance.nodes excludes the master
-  // https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html#getNodes--
+  // https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html#getNodes--s
   return (jenkins.model.Jenkins.instance
             .nodes
             .collect { node -> node.name } << "master")
+            // FYI I append "master" hardcoded for not just running on agents, that may cause issues if master is changed as a term here or if I should go off of a label for the current node instead. 
 }
