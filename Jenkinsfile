@@ -16,6 +16,7 @@
 // The code will require approval of several Jenkins classes in the Script Security mode
 def branches = [:]
 def names = nodeNames()
+println(names)
 for (int i=0; i<names.size(); ++i) {
   def targetNodeName = names[i];
   def pipelineBuilderNodeName = env.NODE_NAME;
