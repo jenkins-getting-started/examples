@@ -45,5 +45,6 @@ parallel branches
 // This method collects a list of Node names from the current Jenkins instance
 @NonCPS
 def nodeNames() {
+  println(jenkins.model.Jenkins.isntance.name)
   return jenkins.model.Jenkins.instance.nodes.collect { node -> node.name }
 }
