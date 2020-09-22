@@ -19,7 +19,6 @@ def names = nodeNames()
 println(names)
 for (int i=0; i<names.size(); ++i) {
   def targetNodeName = names[i];
-  def pipelineBuilderNodeName = env.NODE_NAME;
   dumpMe()
   branches["node_" + targetNodeName] = {
     
@@ -35,7 +34,7 @@ for (int i=0; i<names.size(); ++i) {
 }
 
 def dumpMe() {
-  echo "NODE_NAME: ${NODE_NAME}"
+  echo "NODE_NAME: ${env.NODE_NAME}"
 }
 
 // I wonder how much fun we could have with this.. could I pass the invocation here off to another node? can you do that without allocating a workspace? Can you "shell out" to other flyweights?
